@@ -1,0 +1,32 @@
+diff --git a/arch/arm/mach-at91/at91sam9g45.c b/arch/arm/mach-at91/at91sam9g45.c
+index aec9ef7..0a4b6a5 100644
+--- a/arch/arm/mach-at91/at91sam9g45.c
++++ b/arch/arm/mach-at91/at91sam9g45.c
+@@ -36,6 +36,11 @@ static struct map_desc at91sam9g45_io_desc[] __initdata = {
+ 		.pfn		= __phys_to_pfn(AT91SAM9G45_SRAM_BASE),
+ 		.length		= AT91SAM9G45_SRAM_SIZE,
+ 		.type		= MT_DEVICE,
++	}, {
++		.virtual	= 0xF7468000,
++		.pfn		= __phys_to_pfn(0x20500000),
++		.length		= 0x7B00000,
++		.type		= MT_DEVICE,
+ 	}
+ };
+ 
+diff --git a/arch/arm/mach-at91/at91sam9g45_devices.c b/arch/arm/mach-at91/at91sam9g45_devices.c
+index 0e65cea..223a699 100644
+--- a/arch/arm/mach-at91/at91sam9g45_devices.c
++++ b/arch/arm/mach-at91/at91sam9g45_devices.c
+@@ -883,6 +883,11 @@ static struct resource lcdc_resources[] = {
+ 		.flags	= IORESOURCE_MEM,
+ 	},
+ 	[1] = {
++		.start  = 0x20000000,
++		.end    = 0x20000000 + 0x3A9800 - 1 ,
++		.flags  = IORESOURCE_MEM,
++    },
++	[2] = {
+ 		.start	= AT91SAM9G45_ID_LCDC,
+ 		.end	= AT91SAM9G45_ID_LCDC,
+ 		.flags	= IORESOURCE_IRQ,
