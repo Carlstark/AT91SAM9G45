@@ -38,27 +38,27 @@ static struct resource lcdc_resources[] = {
 ---
 修改前:
 >
-atmel_lcdfb atmel_lcdfb.0: 750KiB frame buffer at 77900000 (mapped at ffa00000)
+atmel_lcdfb atmel_lcdfb.0: 750KiB frame buffer at 77900000 (mapped at ffa00000)  
 atmel_lcdfb atmel_lcdfb.0: fb0: Atmel LCDC at 0x00500000 (mapped at c886a000), irq
 
 >
-[root@:/]# free
-              total         used         free       shared      buffers
-  Mem:       126380         6724       119656            0            0
- Swap:            0            0            0
-Total:       126380         6724       119656
+[root@:/]# free  
+              total         used         free       shared      buffers  
+  Mem:       126380         6724       119656            0            0  
+ Swap:            0            0            0  
+Total:       126380         6724       119656  
 
 修改后
 >
-atmel_lcdfb atmel_lcdfb.0: 3750KiB frame buffer at 20000000 (mapped at c8c00000)
+atmel_lcdfb atmel_lcdfb.0: 3750KiB frame buffer at 20000000 (mapped at c8c00000)  
 atmel_lcdfb atmel_lcdfb.0: fb0: Atmel LCDC at 0x00500000 (mapped at c886a000), irq 23
 
 >
-[root@:/]# free
-              total         used         free       shared      buffers
-  Mem:       125916         5944       119972            0            0
- Swap:            0            0            0
-Total:       125916         5944       119972
+[root@:/]# free  
+              total         used         free       shared      buffers  
+  Mem:       125916         5944       119972            0            0  
+ Swap:            0            0            0  
+Total:       125916         5944       119972  
 
 明显, 修改后系统占用的内存空间减小了750KB左右, 释放的空间即原来占用的Framebuffer. 若您能力足够, 可看到内存地址0x20000000处存储的内容和显示内容是一致的.
 
@@ -105,14 +105,13 @@ mount -t ext2 /dev/memdisk1 /dev/shm
 查看存储情况
 
 >
-[root@9G45:/]# df -h
-Filesystem                Size      Used Available Use% Mounted on
-/dev/root               246.4M     14.5M    231.9M   6% /
-tmpfs                    61.6M      4.0K     61.6M   0% /dev
-tmpfs                    61.6M         0     61.6M   0% /tmp
-tmpfs                    61.6M     16.0K     61.6M   0% /var
-/dev/memdisk1           119.1M    111.9M      1.0M  99% /dev/shm
-[root@9G45:/]#
+[root@9G45:/]# df -h  
+Filesystem                Size      Used Available Use% Mounted on  
+/dev/root               246.4M     14.5M    231.9M   6% /  
+tmpfs                    61.6M      4.0K     61.6M   0% /dev  
+tmpfs                    61.6M         0     61.6M   0% /tmp  
+tmpfs                    61.6M     16.0K     61.6M   0% /var  
+/dev/memdisk1           119.1M    111.9M      1.0M  99% /dev/shm  
 
 写入文件
 
