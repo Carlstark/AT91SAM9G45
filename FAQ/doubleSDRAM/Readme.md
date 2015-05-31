@@ -117,18 +117,18 @@ tmpfs                    61.6M     16.0K     61.6M   0% /var
 写入文件
 
 >
-[root@9G45:/]# dd if=/dev/zero of=/dev/shm/testFile bs=1M count=110
-110+0 records in
-110+0 records out
+[root@9G45:/]# dd if=/dev/zero of=/dev/shm/testFile bs=1M count=110  
+110+0 records in  
+110+0 records out  
 
 查看内存消耗
 
 >
-[root@9G45:/]# free
-              total         used         free       shared      buffers
-  Mem:       126144       123228         2916            0         3596
- Swap:            0            0            0
-Total:       126144       123228         2916
+[root@9G45:/]# free  
+              total         used         free       shared      buffers  
+  Mem:       126144       123228         2916            0         3596  
+ Swap:            0            0            0  
+Total:       126144       123228         2916  
 
 内存消耗巨大, 是不是文件被保存到了主内存中呢 ? 接着往下看
 
@@ -140,11 +140,11 @@ Total:       126144       123228         2916
 再次查看内存
 
 >
-[root@9G45:/]# free
-              total         used         free       shared      buffers
-  Mem:       126144         4340       121804            0           36
- Swap:            0            0            0
-Total:       126144         4340       121804
+[root@9G45:/]# free  
+              total         used         free       shared      buffers  
+  Mem:       126144         4340       121804            0           36  
+ Swap:            0            0            0  
+Total:       126144         4340       121804  
 
 OK, 正常了. 再看看`/dev/shm/`下的测试文件是否还在, 内容是否被修改.
 
